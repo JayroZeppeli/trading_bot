@@ -1,0 +1,8 @@
+
+Le 2022-04-24 20:09:27.614902 Reboot...
+
+Le 2022-04-24 20:09:27.614902 L'automate entre dans l'état : lancement.
+
+Le 2022-04-24 20:09:27.615899 L'automate entre dans l'état : sommeil.
+
+Le 2022-04-24 20:09:27.615899 L'automate s'endort. Il ne se réveillera pas avant 23.0 bonnes minutes de repos.
