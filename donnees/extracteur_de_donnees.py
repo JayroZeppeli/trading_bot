@@ -2,6 +2,7 @@ import pandas as pd
 from binance.client import Client
 from automate import parametres
 import mplfinance as mpf
+from datetime import timedelta
 
 # url = f"https://data.binance.vision/data/spot/daily/klines/{symbole}/{timeframe}/{symbole}-{timeframe}-{date_fin}.zip"
 
@@ -25,8 +26,8 @@ def mise_en_page(table):
     table.columns = colonnes
     colonnes_au_format_numeriques = [colonnes[i] for i in list(range(1, 6)) + [7, 9, 10]]
     table[colonnes_au_format_numeriques] = table[colonnes_au_format_numeriques].apply(pd.to_numeric, axis=1)
-    table['Open Time'] = pd.to_datetime(table['Open Time'] / 1000, unit='s')
-    table['Close Time'] = pd.to_datetime(table['Close Time'] / 1000, unit='s')
+    table['Open Time'] = pd.to_datetime(table['Open Time'] / 1000, unit='s') + timedelta(hours=2)  # Car décalage horaire de 2h mais les données sont bien en temps réel
+    table['Close Time'] = pd.to_datetime(table['Close Time'] / 1000, unit='s') + timedelta(hours=2)
 
 
 def extraction(date_debut):
@@ -34,3 +35,6 @@ def extraction(date_debut):
     table = pd.DataFrame(donnee_brut)
     mise_en_page(table)
     return table
+
+
+print(extraction("2022-04-23"))

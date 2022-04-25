@@ -1,5 +1,5 @@
 from donnees import extracteur_de_donnees
-from automate.parametres import strategie_a_appliquer, taille_des_positions_en_dollars
+from automate.parametres import *
 
 
 date_de_debut = '2022-01-01'  # Enlever 14 jours pour l'établissement des moyennes
@@ -30,7 +30,7 @@ def etudiant(affiche=True):
     en_position, sens, trade_ambitieux = False, None, None
     skip = []
     trades = []
-    for i in range(15, len(table)):
+    for i in range(int(nb_de_bougie_par_jour*nb_jours_initialisation_indicateurs), len(table)):
         if i in skip:
             continue
         table_coupee = table.head(i)
