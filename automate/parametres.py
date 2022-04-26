@@ -20,6 +20,10 @@ nb_de_bougie_par_jour = 24 / unite_time_frame_en_h
 
 marge_erreur_horloger_en_heure = 0.1
 
+precision_apres_virgule_du_coin = 3
+
+temps_avant_initialisation_nouvelle_bougie_binance_data = 0.5
+
 # personnalisable
 
 strategie_a_appliquer = strategies_existantes[2]
@@ -28,6 +32,6 @@ symbole_a_utiliser = symboles_existants[0]
 
 time_frame_a_utiliser = timeframe_existants[1]
 
-taille_des_positions_en_dollars = 1000  # en comptant la marge (qu'on suppose à *10 dans le laboratoire)
+taille_des_positions_en_dollars = 100  # en comptant la marge (qu'on suppose à *10 dans le laboratoire)
 
 # time frame des 4h est le seul programmé pour l'instant

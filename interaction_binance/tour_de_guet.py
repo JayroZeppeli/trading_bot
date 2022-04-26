@@ -3,12 +3,19 @@ from temps import horloger
 from logs.scribe import etat
 
 
+def affiche_ordres(liste_ordres):
+    print("Les ordres ouverts sont :")
+    for ordre in liste_ordres:
+        print(f"Ordre {ordre['type']} {ordre['side']} sur {ordre['symbol']} à {ordre['price']}$ (stop price de {ordre['stopPrice']}$).")
+
+
 def guet():
     etat(4)
-    while len(communication.ordres_ouverts()) >= 2:
-        print('Les ordres ouverts sont :', communication.ordres_ouverts())
+    liste_ordres = communication.ordres_ouverts()
+    while len(liste_ordres) >= 2:
+        affiche_ordres(liste_ordres)
         horloger.attendre_quelques_minutes()
         horloger.attendre_prochaine_bougie(True)
+        liste_ordres = communication.ordres_ouverts()
     communication.fermer_tout_les_ordres()
     etat(5)
-

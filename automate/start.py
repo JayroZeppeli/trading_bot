@@ -11,6 +11,7 @@ def automate():
         attendre_prochaine_bougie(True)
         position, sens, take_profit, stop_loss, quantite = choix_position()
         if not position:
+            etat(6)
             attendre_quelques_minutes()
             continue
         ouvrir_position(sens, take_profit, stop_loss, quantite)

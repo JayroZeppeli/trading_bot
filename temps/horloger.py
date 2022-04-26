@@ -18,8 +18,7 @@ def definire_heure_la_plus_proche(heure_actuelle, heures_possibles):
 
 
 def attendre_quelques_minutes():
-    etat(6)
-    time.sleep(parametres.marge_erreur_horloger_en_heure * 60 + 60)
+    time.sleep(parametres.marge_erreur_horloger_en_heure * 60 + 10)
 
 
 def attendre_prochaine_bougie(tout_de_suite):
@@ -33,9 +32,9 @@ def attendre_prochaine_bougie(tout_de_suite):
         else:
             temps_repos = round(24 - heure_actuelle + heure_de_reveil, 2) * 60
         ecrit_rapport("L'automate s'endort. Il ne se réveillera pas avant " + str(
-            temps_repos + 2) + " bonnes minutes de repos.")
+            round(temps_repos, 2) + parametres.temps_avant_initialisation_nouvelle_bougie_binance_data) + " bonnes minutes de repos.")
         # on convertit les heures en minutes puis en secondes car time.sleep ne prend que des minutes en argument
-        time.sleep(temps_repos * 60 + 120)
+        time.sleep((temps_repos + parametres.temps_avant_initialisation_nouvelle_bougie_binance_data) * 60)
         ecrit_rapport("L'automate se réveille !")
 
 
