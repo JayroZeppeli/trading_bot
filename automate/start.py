@@ -1,3 +1,6 @@
+import sys
+# sys.path.append('/home/diavolo/Documents/trading_bot')
+
 from logs.scribe import ecrit_rapport, etat
 from temps.horloger import attendre_prochaine_bougie, attendre_quelques_minutes
 from interaction_binance.communication import ouvrir_position
@@ -6,7 +9,7 @@ from donnees.trader import choix_position
 
 
 def automate():
-    ecrit_rapport("Reboot...", initialisation=True)
+    ecrit_rapport("L'automate est lancé.", initialisation=True)
     while True:
         attendre_prochaine_bougie(True)
         position, sens, take_profit, stop_loss, quantite = choix_position()

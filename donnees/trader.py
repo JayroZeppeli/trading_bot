@@ -12,7 +12,7 @@ def enleve_debut_des_donnees(table):
 
 def determine_debut_des_donnees():
     date_du_jour = datetime.now()
-    date_de_debut = date_du_jour - strategie_a_appliquer.nombre_de_jours_necessaires - timedelta(days=nb_jours_initialisation_indicateurs)
+    date_de_debut = date_du_jour - timedelta(days=nb_jours_initialisation_indicateurs)
     return date_de_debut.strftime("%Y-%m-%d")
 
 

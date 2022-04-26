@@ -3,8 +3,8 @@ import datetime
 
 def ecrit_rapport(information, initialisation=False, saut_de_ligne="\n"):
     if initialisation:
+        document_confidentiel = open('../logs/rapport.txt', "w")
         etat(0)
-        saut_de_ligne = "\n\n\n"
     document_confidentiel = open('../logs/rapport.txt', "a")
     document_confidentiel.write(f"{saut_de_ligne}Le {datetime.datetime.now()} {information}\n")
 
