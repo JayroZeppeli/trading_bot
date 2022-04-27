@@ -14,7 +14,7 @@ premiere_bougie_de_la_journee = {'4h': 0, '30m': 0}
 
 unite_time_frame_en_h = 0.5
 
-nb_jours_initialisation_indicateurs = 1
+nb_jours_initialisation_indicateurs = 15
 
 nb_de_bougie_par_jour = 24 / unite_time_frame_en_h
 
@@ -24,7 +24,7 @@ precision_apres_virgule_du_coin = 3
 
 temps_avant_initialisation_nouvelle_bougie_binance_data = 0.5
 
-distance_entre_stop_et_limit_pour_stop_loss = 15
+distance_entre_stop_et_limit_pour_stop_loss = 1
 
 effet_de_levier = 10
 

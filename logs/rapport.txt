@@ -6,3 +6,15 @@ Le 2022-04-27 00:07:39.342283 C'est parti.
 Le 2022-04-27 00:07:39.343280 L'automate entre dans l'état : sommeil.
 
 Le 2022-04-27 00:07:39.343280 L'automate s'endort. Il ne se réveillera pas avant 23.3 bonnes minutes de repos.
+
+Le 2022-04-27 11:49:23.191715 L'automate entre dans l'état : lecture et analyse.
+
+Le 2022-04-27 11:49:53.729134 L'automate entre dans l'état : lecture et analyse.
+
+Le 2022-04-27 11:50:15.355892 L'automate entre dans l'état : lecture et analyse.
+
+Le 2022-04-27 11:50:38.006461 L'automate entre dans l'état : lecture et analyse.
+
+Le 2022-04-27 11:50:50.736514 L'automate entre dans l'état : lecture et analyse.
+
+Le 2022-04-27 11:52:28.362978 L'automate entre dans l'état : lecture et analyse.

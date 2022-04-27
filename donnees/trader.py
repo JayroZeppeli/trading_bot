@@ -7,7 +7,12 @@ from automate.parametres import *
 
 def enleve_debut_des_donnees(table):
     """Enleve le début des données où les indicateurs ne sont pas encore initialisés"""
-    return table.iloc[(nb_jours_initialisation_indicateurs*nb_de_bougie_par_jour):]
+    return table.iloc[int((nb_jours_initialisation_indicateurs*nb_de_bougie_par_jour)):]
+
+
+def enleve_bougie_non_terminee(table):
+    if table["Close Time"].iloc[-1] > datetime.now():
+        return table.head(len(table)-1)
 
 
 def determine_debut_des_donnees():
@@ -22,6 +27,7 @@ def choix_position():
     prix_actuel = table["Close"].iloc[-1]
     table = strategie_a_appliquer.calcul_indicateurs(table)
     table = enleve_debut_des_donnees(table)
+    table = enleve_bougie_non_terminee(table)
     return strategie_a_appliquer.signal(table), taille_des_positions_en_dollars / prix_actuel
 
 
@@ -37,8 +43,4 @@ def observer_indicateurs_strategie(table_indicateurs, table_prete, table=extract
     for indicateur in table_indicateurs:
         plt.plot(table["Close Time"], table[indicateur])
     plt.show()
-
-
-
-
 

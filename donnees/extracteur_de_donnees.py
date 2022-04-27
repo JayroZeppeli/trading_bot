@@ -17,7 +17,7 @@ colonnes = ['Open Time', 'Open', 'High', 'Low', 'Close', 'Volume', 'Close Time',
 
 
 def graphique(table):
-    nombre_de_bougies = parametres.strategie_a_appliquer.nombre_de_jours_necessaires.days
+    nombre_de_bougies = parametres.nb_jours_initialisation_indicateurs
     mpf.plot(table.set_index(colonnes[6]).tail(nombre_de_bougies*6), type='candle')
 
 
@@ -35,3 +35,5 @@ def extraction(date_debut):
     table = pd.DataFrame(donnee_brut)
     mise_en_page(table)
     return table
+
+

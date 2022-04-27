@@ -13,6 +13,16 @@ def entre_en_position(client, sens, symbole, take_profit, stop_loss, quantite):
                                                quantity=quantite)
     scribe.ecrit_rapport(f'Je suis rentré en position {["short", "long"][sens]} au cours actuel.')
     take_profit, stop_loss = round(take_profit, 2), round(stop_loss, 2)
+    ordre_stop_limite_perte = client.futures_create_order(symbol=symbole,
+                                                          side=sortie,
+                                                          type=FUTURE_ORDER_TYPE_STOP,
+                                                          timeInForce=TIME_IN_FORCE_GTC,
+                                                          quantity=quantite,
+                                                          stopPrice=stop_loss,
+                                                          price=stop_loss + distance_entre_stop_et_limit_pour_stop_loss - (
+                                                                      2 * distance_entre_stop_et_limit_pour_stop_loss * sens),
+                                                          reduceOnly='true')
+    scribe.ecrit_rapport(f'Stop loss placé à {stop_loss}$.')
     ordre_limite_profit = client.futures_create_order(symbol=symbole,
                                                       side=sortie,
                                                       type=FUTURE_ORDER_TYPE_LIMIT,
@@ -21,15 +31,7 @@ def entre_en_position(client, sens, symbole, take_profit, stop_loss, quantite):
                                                       price=take_profit,
                                                       reduceOnly='true')
     scribe.ecrit_rapport(f'Take profit placé à {take_profit}$.')
-    ordre_stop_limite_perte = client.futures_create_order(symbol=symbole,
-                                                          side=sortie,
-                                                          type=FUTURE_ORDER_TYPE_STOP,
-                                                          timeInForce=TIME_IN_FORCE_GTC,
-                                                          quantity=quantite,
-                                                          stopPrice=stop_loss - distance_entre_stop_et_limit_pour_stop_loss + (2 * distance_entre_stop_et_limit_pour_stop_loss * sens),
-                                                          price=stop_loss,
-                                                          reduceOnly='true')
-    scribe.ecrit_rapport(f'Stop loss placé à {stop_loss}$.')
+
 
 
 

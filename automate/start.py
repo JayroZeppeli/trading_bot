@@ -12,7 +12,7 @@ def automate():
     ecrit_rapport("L'automate est lancé.", initialisation=True)
     while True:
         attendre_prochaine_bougie(True)
-        position, sens, take_profit, stop_loss, quantite = choix_position()
+        [position, sens, take_profit, stop_loss], quantite = choix_position()
         if not position:
             etat(6)
             attendre_quelques_minutes()
