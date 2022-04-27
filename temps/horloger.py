@@ -18,7 +18,7 @@ def definire_heure_la_plus_proche(heure_actuelle, heures_possibles):
 
 
 def attendre_quelques_minutes():
-    time.sleep(parametres.marge_erreur_horloger_en_heure * 60 + 10)
+    time.sleep(parametres.marge_erreur_horloger_en_heure * 3600 + 10)
 
 
 def attendre_prochaine_bougie(tout_de_suite):
@@ -36,4 +36,3 @@ def attendre_prochaine_bougie(tout_de_suite):
         # on convertit les heures en minutes puis en secondes car time.sleep ne prend que des minutes en argument
         time.sleep((temps_repos + parametres.temps_avant_initialisation_nouvelle_bougie_binance_data) * 60)
     ecrit_rapport("Reveil. La bougie vient de fermer.")
-
