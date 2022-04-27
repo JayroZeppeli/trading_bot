@@ -31,10 +31,3 @@ def entre_en_position(client, sens, symbole, take_profit, stop_loss, quantite):
                                                       price=take_profit,
                                                       reduceOnly='true')
     scribe.ecrit_rapport(f'Take profit placé à {take_profit}$.')
-
-
-
-
-
-
-

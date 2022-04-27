@@ -1,6 +1,6 @@
 from interaction_binance import communication
 from temps import horloger
-from logs.scribe import etat
+from logs.scribe import etat, ecrit_rapport, archivage_des_logs
 
 
 def affiche_ordres(liste_ordres):
@@ -14,6 +14,8 @@ def guet():
     etat(3)
     liste_ordres = communication.ordres_ouverts()
     while len(liste_ordres) >= 2:
+        ecrit_rapport("Attente de fermeture.")
+        archivage_des_logs()
         horloger.attendre_quelques_minutes()
         horloger.attendre_prochaine_bougie(True)
         liste_ordres = communication.ordres_ouverts()

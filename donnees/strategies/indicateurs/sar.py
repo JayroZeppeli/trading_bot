@@ -123,9 +123,3 @@ def observer_psar(debut):
     table = calcul_psar(table)
     plt.plot(table["Close Time"], table['PSAR'])
     plt.show()
-    print(table)
-
-
-
-
-

@@ -38,4 +38,4 @@ time_frame_a_utiliser = timeframe_existants[1]
 
 taille_des_positions_en_dollars = 100  # en comptant la marge (qu'on suppose à *10 dans le laboratoire)
 
-# time frame des 4h est le seul programmé pour l'instant
+# time frame des 30m et 4h sont les seuls programmés pour l'instant

@@ -39,4 +39,3 @@ def archivage_des_logs():
         for ligne in rapport:
             dates_informations.append([ligne['Date'], ligne['Information']])
         feuille.update(f"A{nombre_colonnes+1}:B{len(dates_informations)+nombre_colonnes}", dates_informations)
-

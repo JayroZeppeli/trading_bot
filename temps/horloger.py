@@ -37,5 +37,3 @@ def attendre_prochaine_bougie(tout_de_suite):
         time.sleep((temps_repos + parametres.temps_avant_initialisation_nouvelle_bougie_binance_data) * 60)
     ecrit_rapport("Reveil. La bougie vient de fermer.")
 
-
-

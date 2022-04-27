@@ -33,4 +33,3 @@ def signal(table):
         take_profit, stop_loss = prix_actuel * (1 - pourcentages_take_profit[prix_actuel < valeur_ema]), prix_actuel * (1 + pourcentages_stop_loss[prix_actuel < valeur_ema])
         return True, False, take_profit, stop_loss, bool(prix_actuel < valeur_ema)
     return False, None, None, None, None
-

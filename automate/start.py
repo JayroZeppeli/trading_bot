@@ -25,18 +25,9 @@ def automate(position=False):
         ouvrir_position(sens, take_profit, stop_loss, quantite)
 
 
-automate()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+try:
+    automate()
+except Exception as exception:
+    ecrit_rapport("Erreur rencontrée. Fin du programme.")
+    ecrit_rapport(f"Détails de l'erreur: {exception}")
+    archivage_des_logs()

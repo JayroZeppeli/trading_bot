@@ -43,4 +43,3 @@ def observer_indicateurs_strategie(table_indicateurs, table_prete, table=extract
     for indicateur in table_indicateurs:
         plt.plot(table["Close Time"], table[indicateur])
     plt.show()
-

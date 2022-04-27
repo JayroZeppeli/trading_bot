@@ -35,5 +35,3 @@ def extraction(date_debut):
     table = pd.DataFrame(donnee_brut)
     mise_en_page(table)
     return table
-
-

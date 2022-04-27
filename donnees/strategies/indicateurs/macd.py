@@ -20,6 +20,3 @@ def observer_macd(debut):
     for indicateur in table_indicateurs:
         plt.plot(table["Close Time"], table[indicateur])
     plt.show()
-
-
-
