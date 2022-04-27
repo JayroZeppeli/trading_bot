@@ -11,9 +11,11 @@ from interaction_binance.tour_de_guet import guet
 from donnees.trader import choix_position
 
 
-def automate():
+def automate(deja_en_position=False):
     ecrit_rapport("Lancement...", initialisation=True)
     while True:
+        if deja_en_position:
+            guet()
         attendre_prochaine_bougie(True)
         [position, sens, take_profit, stop_loss], quantite = choix_position()
         if not position:

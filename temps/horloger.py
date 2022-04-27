@@ -39,4 +39,3 @@ def attendre_prochaine_bougie(tout_de_suite):
 
 
 
-
