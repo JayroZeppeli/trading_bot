@@ -1,7 +1,10 @@
 import sys
-# sys.path.append('/home/diavolo/Documents/trading_bot')
+from parametres import raspberry
 
-from logs.scribe import ecrit_rapport, etat
+if raspberry:
+    sys.path.append('/home/diavolo/Téléchargements/trading_bot-main')
+
+from logs.scribe import ecrit_rapport, etat, archivage_des_logs
 from temps.horloger import attendre_prochaine_bougie, attendre_quelques_minutes
 from interaction_binance.communication import ouvrir_position
 from interaction_binance.tour_de_guet import guet
@@ -19,6 +22,7 @@ def automate():
             continue
         ouvrir_position(sens, take_profit, stop_loss, quantite)
         guet()
+        archivage_des_logs()
 
 
 automate()

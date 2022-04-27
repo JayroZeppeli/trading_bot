@@ -32,3 +32,4 @@ def ouvrir_position(sens, take_profit, stop_loss, quantite):  # long = True et s
     gestion_des_positions.entre_en_position(client, sens, symbole, take_profit, stop_loss, quantite)
 
 
+
