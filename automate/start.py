@@ -1,7 +1,7 @@
 import sys
-from parametres import raspberry
+import platform
 
-if raspberry:
+if platform.system() != 'Windows':
     sys.path.append('/home/diavolo/Téléchargements/trading_bot-main')
 
 from logs.scribe import ecrit_rapport, etat, archivage_des_logs
@@ -12,17 +12,16 @@ from donnees.trader import choix_position
 
 
 def automate():
-    ecrit_rapport("L'automate est lancé.", initialisation=True)
+    ecrit_rapport("Lancement...", initialisation=True)
     while True:
         attendre_prochaine_bougie(True)
         [position, sens, take_profit, stop_loss], quantite = choix_position()
         if not position:
-            etat(6)
+            etat(5)
             attendre_quelques_minutes()
             continue
         ouvrir_position(sens, take_profit, stop_loss, quantite)
         guet()
-        archivage_des_logs()
 
 
 automate()

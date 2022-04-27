@@ -11,7 +11,7 @@ def entre_en_position(client, sens, symbole, take_profit, stop_loss, quantite):
                                                side=entree,
                                                type=ORDER_TYPE_MARKET,
                                                quantity=quantite)
-    scribe.ecrit_rapport(f'Je suis rentré en position {["short", "long"][sens]} au cours actuel.')
+    scribe.ecrit_rapport(f'Position {["short", "long"][sens]} au cours actuel ouverte.')
     take_profit, stop_loss = round(take_profit, 2), round(stop_loss, 2)
     ordre_stop_limite_perte = client.futures_create_order(symbol=symbole,
                                                           side=sortie,

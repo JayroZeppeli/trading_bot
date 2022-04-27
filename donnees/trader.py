@@ -22,7 +22,7 @@ def determine_debut_des_donnees():
 
 
 def choix_position():
-    etat(2)
+    etat(1)
     table = extraction(determine_debut_des_donnees())
     prix_actuel = table["Close"].iloc[-1]
     table = strategie_a_appliquer.calcul_indicateurs(table)

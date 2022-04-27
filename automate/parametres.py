@@ -1,7 +1,5 @@
 from donnees.strategies import strategie_rsi_sma_ema, combinaison_ancienne, strategie_macd_psar_ema
 
-raspberry = False
-
 # non personnalisable
 
 strategies_existantes = [strategie_rsi_sma_ema, combinaison_ancienne, strategie_macd_psar_ema]

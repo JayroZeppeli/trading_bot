@@ -27,7 +27,7 @@ def fermer_tout_les_ordres():
 
 
 def ouvrir_position(sens, take_profit, stop_loss, quantite):  # long = True et short = False
-    etat(3)
+    etat(2)
     client.futures_change_leverage(symbol=symbole, leverage=parametres.effet_de_levier)
     gestion_des_positions.entre_en_position(client, sens, symbole, take_profit, stop_loss, quantite)
 
