@@ -17,7 +17,7 @@ def guet():
         ecrit_rapport("Attente de fermeture.")
         archivage_des_logs()
         horloger.attendre_quelques_minutes()
-        horloger.attendre_prochaine_bougie(True)
+        horloger.attendre_prochaine_bougie()
         liste_ordres = communication.ordres_ouverts()
     communication.fermer_tout_les_ordres()
     etat(4)

@@ -22,7 +22,7 @@ marge_erreur_horloger_en_heure = 0.1
 
 precision_apres_virgule_du_coin = 3
 
-temps_avant_initialisation_nouvelle_bougie_binance_data = 0.5
+temps_decalage_update_base_de_donnee_binance_en_minute = 0.17
 
 distance_entre_stop_et_limit_pour_stop_loss = 1
 

@@ -5,9 +5,11 @@ from automate import parametres
 
 
 def horloge():
-    heures = int(datetime.now().strftime("%H"))
-    minutes = round(int(datetime.now().strftime("%M")) / 60, 2)
-    return heures + minutes
+    date = datetime.now()
+    heures = int(date.strftime("%H"))
+    minutes = int(date.strftime("%M")) / 60
+    secondes = int(date.strftime("%S")) / 3600
+    return heures + minutes + secondes
 
 
 def definire_heure_la_plus_proche(heure_actuelle, heures_possibles):
@@ -21,18 +23,18 @@ def attendre_quelques_minutes():
     time.sleep(parametres.marge_erreur_horloger_en_heure * 3600 + 10)
 
 
-def attendre_prochaine_bougie(tout_de_suite):
+def attendre_prochaine_bougie(tout_de_suite=True):
     etat(0)
     heures_possibles = parametres.fractionnement_des_heures[parametres.time_frame_a_utiliser]
     heure_actuelle = horloge()
     heure_de_reveil = definire_heure_la_plus_proche(heure_actuelle, heures_possibles) + parametres.unite_time_frame_en_h * (not tout_de_suite)
     if not (heure_de_reveil <= heure_actuelle <= (heure_de_reveil + parametres.marge_erreur_horloger_en_heure + 0.03)):
         if heure_actuelle < heure_de_reveil:
-            temps_repos = round(heure_de_reveil - heure_actuelle, 2) * 60
+            temps_repos = heure_de_reveil - heure_actuelle
         else:
-            temps_repos = round(24 - heure_actuelle + heure_de_reveil, 2) * 60
-        ecrit_rapport("L'automate s'endort. Il ne se réveillera pas avant " + str(
-            round(temps_repos, 2) + parametres.temps_avant_initialisation_nouvelle_bougie_binance_data) + " bonnes minutes de repos.")
+            temps_repos = 24 - heure_actuelle + heure_de_reveil
+        temps_repos = round(temps_repos * 60 + parametres.temps_decalage_update_base_de_donnee_binance_en_minute, 4)
+        ecrit_rapport("L'automate s'endort. Il ne se réveillera pas avant " + str(round(temps_repos, 2)) + " bonnes minutes de repos.")
         # on convertit les heures en minutes puis en secondes car time.sleep ne prend que des minutes en argument
-        time.sleep((temps_repos + parametres.temps_avant_initialisation_nouvelle_bougie_binance_data) * 60)
+        time.sleep(temps_repos * 60)
     ecrit_rapport("Reveil. La bougie vient de fermer.")
