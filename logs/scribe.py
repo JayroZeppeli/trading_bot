@@ -2,7 +2,7 @@ import csv
 import datetime
 import platform
 import gspread
-import interaction_mail
+from logs import interaction_mail
 
 booleen_os = platform.system() != 'Windows'
 emplacement_csv = ('../logs/rapport.csv', '/home/diavolo/Téléchargements/trading_bot-main/logs/rapport.csv')
