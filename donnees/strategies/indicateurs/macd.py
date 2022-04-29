@@ -1,5 +1,6 @@
-from donnees.strategies.indicateurs import ema
 import matplotlib.pyplot as plt
+
+from donnees.strategies.indicateurs import ema
 
 
 def calcul_macd(table, longueur_rapide, longueur_lente, longueur_signal):

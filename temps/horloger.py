@@ -1,7 +1,8 @@
 import time
 from datetime import datetime
-from logs.scribe import ecrit_rapport
+
 from automate import parametres
+from logs.scribe import ecrit_rapport
 
 
 def horloge():

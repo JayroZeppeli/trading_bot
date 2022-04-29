@@ -1,5 +1,5 @@
-import sys
 import platform
+import sys
 
 if platform.system() != 'Windows':
     sys.path.append('/home/diavolo/Téléchargements/trading_bot-main')

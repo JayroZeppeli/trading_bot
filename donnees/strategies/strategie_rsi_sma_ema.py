@@ -1,7 +1,8 @@
 from datetime import timedelta
-import pandas as pd
-from donnees.strategies.indicateurs import rsi, ema
 
+import pandas as pd
+
+from donnees.strategies.indicateurs import rsi, ema
 
 pd.options.mode.chained_assignment = None
 

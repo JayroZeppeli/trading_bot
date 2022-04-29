@@ -1,7 +1,7 @@
 from binance.client import Client
-from interaction_binance import gestion_des_positions
-from automate import parametres
 
+from automate import parametres
+from interaction_binance import gestion_des_positions
 
 api_key = 'LC5RxUjNaW9yI66wCQ4uxP2zvAuS1rlhmBTIO5IUFXskF7QwlegWgLaaBwUviw4P'
 api_secret = 'q8wPz0g090alkOEPt11QTliaNc9gsQRTHEgYohbj8zKDczipgWmxYhcrKSY0weLG'

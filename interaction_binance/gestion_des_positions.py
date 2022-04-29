@@ -1,6 +1,7 @@
 from binance.enums import *
-from logs.scribe import ecrit_rapport
+
 from automate.parametres import precision_apres_virgule_du_coin, distance_entre_stop_et_limit_pour_stop_loss
+from logs.scribe import ecrit_rapport
 
 
 def entre_en_position(client, sens, symbole, take_profit, stop_loss, quantite):

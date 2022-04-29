@@ -1,6 +1,5 @@
+from automate.parametres import strategie_a_appliquer, symboles_existants
 from donnees import extracteur_de_donnees, trader
-from automate.parametres import strategie_a_appliquer, symboles_existants, nb_de_bougie_par_jour, nb_jours_initialisation_indicateurs
-
 
 portfolio_de_depart = 4000
 portfolio = portfolio_de_depart

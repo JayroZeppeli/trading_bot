@@ -1,7 +1,8 @@
-import datetime
-import gspread
 import csv
+import datetime
 import platform
+import gspread
+import interaction_mail
 
 booleen_os = platform.system() != 'Windows'
 emplacement_csv = ('../logs/rapport.csv', '/home/diavolo/Téléchargements/trading_bot-main/logs/rapport.csv')
@@ -16,6 +17,13 @@ def definire_palier_actuel():
 
 
 def modifier_palier_actuel(palier):
+    ecrit_rapport(f"Changement de palier, l'automate va commencer à trader avec {palier}")
+    try:
+        interaction_mail.envoyer_mail("Changement tailles de position",
+                                      "Le portfolio de l'automate a atteint une taille consequente. "
+                                      f"A partir de maintenant, il va trader avec {palier}$.")
+    except Exception:
+        print(f"Echec de l'envoi du mail de changement de palier, nous passons à des trades de {palier}$.")
     fichier = open(emplacement_a_utiliser_txt, "w")
     fichier.write(str(int(palier)))
 
@@ -40,7 +48,8 @@ def ecrit_rapport(information, initialisation=False):
 
 
 def etat(numero):
-    etats = ['Sommeil', 'Lecture et analyse', 'Ouverture de position', 'Position ouverte', 'Position close', 'Pas de signal']
+    etats = ['Sommeil', 'Lecture et analyse', 'Ouverture de position', 'Position ouverte', 'Position close',
+             'Pas de signal']
     ecrit_rapport(f"État : {etats[numero]}")
     if numero in [3, 5]:
         archivage_des_logs()
@@ -62,9 +71,8 @@ def archivage_des_logs(vider_la_feuille=False):
             dates_informations = [['Date', 'Information']]
             for ligne in rapport:
                 dates_informations.append([ligne['Date'], ligne['Information']])
-            feuille.update(f"A1:B{len(dates_informations)+1}", dates_informations)
+            feuille.update(f"A1:B{len(dates_informations) + 1}", dates_informations)
     except Exception:
         erreur = "Problème de connexion à l'API Google Sheet"
         ecrit_rapport(erreur)
         print(erreur)
-

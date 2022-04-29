@@ -1,7 +1,9 @@
 from datetime import datetime, timedelta
+
 import matplotlib.pyplot as plt
-from donnees.extracteur_de_donnees import extraction, graphique, usdt_dispo
+
 from automate.parametres import *
+from donnees.extracteur_de_donnees import extraction, graphique, usdt_dispo
 from logs.scribe import modifier_palier_actuel
 
 

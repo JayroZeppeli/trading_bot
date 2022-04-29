@@ -1,8 +1,10 @@
+from datetime import timedelta
+
+import mplfinance as mpf
 import pandas as pd
 from binance.client import Client
+
 from automate import parametres
-import mplfinance as mpf
-from datetime import timedelta
 
 # url = f"https://data.binance.vision/data/spot/daily/klines/{symbole}/{timeframe}/{symbole}-{timeframe}-{date_fin}.zip"
 

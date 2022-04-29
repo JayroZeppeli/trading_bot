@@ -1,6 +1,6 @@
 from interaction_binance import communication
-from temps import horloger
 from logs.scribe import archivage_des_logs
+from temps import horloger
 
 
 def affiche_ordres(liste_ordres):
