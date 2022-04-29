@@ -3,12 +3,25 @@ import gspread
 import csv
 import platform
 
-emplacement = ('../logs/rapport.csv', '/home/diavolo/Téléchargements/trading_bot-main/logs/rapport.csv')
-emplacement_a_utiliser = emplacement[platform.system() != 'Windows']
+booleen_os = platform.system() != 'Windows'
+emplacement_csv = ('../logs/rapport.csv', '/home/diavolo/Téléchargements/trading_bot-main/logs/rapport.csv')
+emplacement_txt = ('/palier_actuel.txt', '/home/diavolo/Téléchargements/trading_bot-main/automate/palier_actuel.txt')
+emplacement_a_utiliser_csv = emplacement_csv[booleen_os]
+emplacement_a_utiliser_txt = emplacement_txt[booleen_os]
+
+
+def definire_palier_actuel():
+    fichier = open(emplacement_a_utiliser_txt, "r")
+    return int(fichier.read())
+
+
+def modifier_palier_actuel(palier):
+    fichier = open(emplacement_a_utiliser_txt, "w")
+    fichier.write(str(int(palier)))
 
 
 def definire_taille_fichier():
-    with open(emplacement_a_utiliser, "r") as rapport_brut:
+    with open(emplacement_a_utiliser_csv, "r") as rapport_brut:
         taille_fichier = len(list(csv.reader(rapport_brut)))
     return taille_fichier
 
@@ -17,7 +30,7 @@ def ecrit_rapport(information, initialisation=False):
     information = information.replace('\n', ' ')
     initialisation = initialisation or definire_taille_fichier() >= 400
     mot_de_lecture = ['a', 'w'][initialisation]
-    with open(emplacement_a_utiliser, mot_de_lecture) as rapport_brut:
+    with open(emplacement_a_utiliser_csv, mot_de_lecture) as rapport_brut:
         colonnes = ["Date", "Information"]
         rapport = csv.DictWriter(rapport_brut, fieldnames=colonnes, quotechar='', quoting=csv.QUOTE_NONE)
         if initialisation:
@@ -44,7 +57,7 @@ def archivage_des_logs(vider_la_feuille=False):
         feuille = fichier.worksheet("data")
         if vider_la_feuille:
             feuille.clear()
-        with open(emplacement_a_utiliser, "r") as rapport_brut:
+        with open(emplacement_a_utiliser_csv, "r") as rapport_brut:
             rapport = csv.DictReader(rapport_brut)
             dates_informations = [['Date', 'Information']]
             for ligne in rapport:
@@ -54,3 +67,4 @@ def archivage_des_logs(vider_la_feuille=False):
         erreur = "Problème de connexion à l'API Google Sheet"
         ecrit_rapport(erreur)
         print(erreur)
+

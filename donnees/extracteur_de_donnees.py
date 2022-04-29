@@ -16,6 +16,10 @@ colonnes = ['Open Time', 'Open', 'High', 'Low', 'Close', 'Volume', 'Close Time',
             'Number of Trades', 'TB base AV', 'TB quote AV', 'Ignore']  # TB = Taker Buy, AV = Asset Volume
 
 
+def usdt_dispo():
+    return round(float(client.futures_account_balance()[6]['balance']) * 0.975, 2)
+
+
 def graphique(table):
     nombre_de_bougies = parametres.nb_jours_initialisation_indicateurs
     mpf.plot(table.set_index(colonnes[6]).tail(nombre_de_bougies*6), type='candle')
@@ -32,6 +36,14 @@ def mise_en_page(table):
 
 def extraction(date_debut):
     donnee_brut = client.get_historical_klines(symbole, timeframe, date_debut)  # Client.KLINE_INTERVAL_4HOUR permet de voir le format correct
+    table = pd.DataFrame(donnee_brut)
+    mise_en_page(table)
+    return table
+
+
+def extraction_de_test(symbole_a_tester, date_debut):
+    symbole_a_tester += 'USDT'
+    donnee_brut = client.get_historical_klines(symbole_a_tester, timeframe, date_debut)
     table = pd.DataFrame(donnee_brut)
     mise_en_page(table)
     return table

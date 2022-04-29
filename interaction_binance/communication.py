@@ -13,10 +13,6 @@ symbole = parametres.symbole_a_utiliser + 'USDT'
 # client.API_URL = "https://fapi.binance.com"
 
 
-def usdt_dispo():
-    return round(float(client.futures_account_balance()[6]['balance']) * 0.975, 2)
-
-
 def ordres_ouverts():
     return client.futures_get_open_orders()
 

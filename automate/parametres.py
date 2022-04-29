@@ -1,10 +1,13 @@
 from donnees.strategies import strategie_rsi_sma_ema, combinaison_ancienne, strategie_macd_psar_ema
+from logs.scribe import definire_palier_actuel
 
 # non personnalisable
 
 strategies_existantes = [strategie_rsi_sma_ema, combinaison_ancienne, strategie_macd_psar_ema]
 
-symboles_existants = ['ETH', 'BTC']
+symboles_existants = ["AAVE", 'ETH', 'BTC', "BNB", "TRX", "LINK", "XLM", "ADA", "XMR", "DASH", "ATOM", "BAT", "ALGO", "DOGE",
+                      "SNX", "SUSHI", "SOL", 'BCH', 'DOT', 'VET', 'ETC', 'LTC', 'XRP', 'EOS', 'THETA', "AVAX",
+                      "UNI", "LUNA"]
 
 timeframe_existants = ['4h', '30m']
 
@@ -36,6 +39,6 @@ symbole_a_utiliser = symboles_existants[0]
 
 time_frame_a_utiliser = timeframe_existants[1]
 
-taille_des_positions_en_dollars = 100  # en comptant la marge (qu'on suppose à *10 dans le laboratoire)
+taille_des_positions_en_dollars = definire_palier_actuel()  # en comptant la marge (qu'on suppose à *10 dans le laboratoire)
 
 # time frame des 30m et 4h sont les seuls programmés pour l'instant

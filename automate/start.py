@@ -12,7 +12,7 @@ from interaction_binance.tour_de_guet import guet
 from donnees.trader import choix_position
 
 
-def automate(position=False):
+def automate(position=True):
     ecrit_rapport("Lancement...", initialisation=True)
     while True:
         if position:
