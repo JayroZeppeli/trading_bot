@@ -16,13 +16,18 @@ def automate(position=False):
     ecrit_rapport("Lancement...", initialisation=True)
     while True:
         if position:
+            etat(3)
             guet()
+            etat(4)
+        etat(0)
         attendre_prochaine_bougie()
+        etat(1)
         [position, sens, take_profit, stop_loss], quantite = choix_position()
         if not position:
             etat(5)
             attendre_quelques_minutes()
             continue
+        etat(2)
         ouvrir_position(sens, take_profit, stop_loss, quantite)
 
 
@@ -32,7 +37,6 @@ except Exception as exception:
     ecrit_rapport("Erreur rencontrée. Fin du programme.")
     ecrit_rapport(f"Détails de l'erreur: {exception}")
     archivage_des_logs()
-    envoyer_mail("L'automate s'est arrete", f"L'automate a rencontre une erreur. "
-                                            f"Le programme a pris fin. "
-                                            f"Les details de l'erreur sont consultables dans les logs")
-
+    envoyer_mail("L'automate s'est arrete", "L'automate a rencontre une erreur. "
+                                            "Le programme a pris fin. "
+                                            "Les details de l'erreur sont consultables dans les logs.")

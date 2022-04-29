@@ -14,6 +14,3 @@ def envoyer_mail(sujet, message):
     with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
         server.login(adresse_mail, password)
         server.sendmail(adresse_mail, destinataire, contenu)
-
-
-

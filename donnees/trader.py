@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 from donnees.extracteur_de_donnees import extraction, graphique
-from logs.scribe import etat
 from automate.parametres import *
 
 
@@ -22,7 +21,6 @@ def determine_debut_des_donnees():
 
 
 def choix_position():
-    etat(1)
     table = extraction(determine_debut_des_donnees())
     prix_actuel = table["Close"].iloc[-1]
     table = strategie_a_appliquer.calcul_indicateurs(table)

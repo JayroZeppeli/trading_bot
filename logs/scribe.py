@@ -7,8 +7,15 @@ emplacement = ('../logs/rapport.csv', '/home/diavolo/Téléchargements/trading_b
 emplacement_a_utiliser = emplacement[platform.system() != 'Windows']
 
 
+def definire_taille_fichier():
+    with open(emplacement_a_utiliser, "r") as rapport_brut:
+        taille_fichier = len(list(csv.reader(rapport_brut)))
+    return taille_fichier
+
+
 def ecrit_rapport(information, initialisation=False):
     information = information.replace('\n', ' ')
+    initialisation = initialisation or definire_taille_fichier() >= 400
     mot_de_lecture = ['a', 'w'][initialisation]
     with open(emplacement_a_utiliser, mot_de_lecture) as rapport_brut:
         colonnes = ["Date", "Information"]

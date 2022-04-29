@@ -1,5 +1,5 @@
 from binance.enums import *
-from logs import scribe
+from logs.scribe import ecrit_rapport
 from automate.parametres import precision_apres_virgule_du_coin, distance_entre_stop_et_limit_pour_stop_loss
 
 
@@ -11,7 +11,7 @@ def entre_en_position(client, sens, symbole, take_profit, stop_loss, quantite):
                                                side=entree,
                                                type=ORDER_TYPE_MARKET,
                                                quantity=quantite)
-    scribe.ecrit_rapport(f'Position {["short", "long"][sens]} au cours actuel ouverte.')
+    ecrit_rapport(f'Position {["short", "long"][sens]} au cours actuel ouverte.')
     take_profit, stop_loss = round(take_profit, 2), round(stop_loss, 2)
     ordre_stop_limite_perte = client.futures_create_order(symbol=symbole,
                                                           side=sortie,
@@ -22,7 +22,7 @@ def entre_en_position(client, sens, symbole, take_profit, stop_loss, quantite):
                                                           price=stop_loss + distance_entre_stop_et_limit_pour_stop_loss - (
                                                                       2 * distance_entre_stop_et_limit_pour_stop_loss * sens),
                                                           reduceOnly='true')
-    scribe.ecrit_rapport(f'Stop loss placé à {stop_loss}$.')
+    ecrit_rapport(f'Stop loss placé à {stop_loss}$.')
     ordre_limite_profit = client.futures_create_order(symbol=symbole,
                                                       side=sortie,
                                                       type=FUTURE_ORDER_TYPE_LIMIT,
@@ -30,4 +30,4 @@ def entre_en_position(client, sens, symbole, take_profit, stop_loss, quantite):
                                                       quantity=quantite,
                                                       price=take_profit,
                                                       reduceOnly='true')
-    scribe.ecrit_rapport(f'Take profit placé à {take_profit}$.')
+    ecrit_rapport(f'Take profit placé à {take_profit}$.')

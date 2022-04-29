@@ -1,7 +1,6 @@
 from binance.client import Client
 from interaction_binance import gestion_des_positions
 from automate import parametres
-from logs.scribe import etat
 
 
 api_key = 'LC5RxUjNaW9yI66wCQ4uxP2zvAuS1rlhmBTIO5IUFXskF7QwlegWgLaaBwUviw4P'
@@ -27,7 +26,5 @@ def fermer_tout_les_ordres():
 
 
 def ouvrir_position(sens, take_profit, stop_loss, quantite):  # long = True et short = False
-    etat(2)
     client.futures_change_leverage(symbol=symbole, leverage=parametres.effet_de_levier)
     gestion_des_positions.entre_en_position(client, sens, symbole, take_profit, stop_loss, quantite)
-
