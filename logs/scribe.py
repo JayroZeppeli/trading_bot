@@ -6,7 +6,7 @@ from logs import interaction_mail
 
 booleen_os = platform.system() != 'Windows'
 emplacement_csv = ('../logs/rapport.csv', '/home/diavolo/Téléchargements/trading_bot-main/logs/rapport.csv')
-emplacement_txt = ('/palier_actuel.txt', '/home/diavolo/Téléchargements/trading_bot-main/automate/palier_actuel.txt')
+emplacement_txt = ('../automate/palier_actuel.txt', '/home/diavolo/Téléchargements/trading_bot-main/automate/palier_actuel.txt')
 emplacement_a_utiliser_csv = emplacement_csv[booleen_os]
 emplacement_a_utiliser_txt = emplacement_txt[booleen_os]
 
