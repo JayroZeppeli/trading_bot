@@ -23,7 +23,7 @@ nb_de_bougie_par_jour = 24 / unite_time_frame_en_h
 
 marge_erreur_horloger_en_heure = 0.1
 
-precision_apres_virgule_du_coin = 3
+precision_apres_virgule_du_coin = 1
 
 temps_decalage_update_base_de_donnee_binance_en_minute = 0.17
 

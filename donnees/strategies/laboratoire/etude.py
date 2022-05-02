@@ -1,4 +1,7 @@
-from automate.parametres import strategie_a_appliquer, symboles_existants
+import numpy as np
+import matplotlib.pyplot as plt
+
+from demarrage.parametres import strategie_a_appliquer, symboles_existants
 from donnees import extracteur_de_donnees, trader
 
 portfolio_de_depart = 4000
@@ -6,27 +9,32 @@ portfolio = portfolio_de_depart
 taille_des_positions_en_dollars = round(10 * portfolio / 4, 2)
 
 
-date_de_debut = '2021-01-01'  # Enlever 14 jours pour l'établissement des moyennes
+date_de_debut = '2022-01-01'  # Enlever 14 jours pour l'établissement des moyennes
 
 marge_supposee = 10
 nombre_de_tour_a_skip = 0
 
 
-def etudiant(symbole_a_tester, affiche=True):
+def etudiant(symbole_a_tester, affiche=True, adaptation_portfolio=False):
     global portfolio
     global taille_des_positions_en_dollars
+    evolution_portfolio = []
     if affiche:
         print("Lancement de l'étude.\nCréation de la table...")
-    table_sans_indicateur = extracteur_de_donnees.extraction_de_test(symbole_a_tester, date_de_debut)
+    table_sans_indicateur = extracteur_de_donnees.extraction_precise(symbole_a_tester, date_de_debut)
     table = strategie_a_appliquer.calcul_indicateurs(table_sans_indicateur)
     table = trader.enleve_debut_des_donnees(table)
     stop_loss, take_profit = 0, 0
     en_position, sens, trade_ambitieux = False, None, None
     trades = []
     indecis = 0
-    for indice in range(len(table)):
-        if portfolio * 2 >= taille_des_positions_en_dollars:  # le meilleur palier pour l'instant c'est 2
-            taille_des_positions_en_dollars = round(10 * portfolio / 4, 2)
+    for indice in range(1, len(table)):
+        evolution_portfolio.append(portfolio)
+        if adaptation_portfolio:
+            if portfolio * 2 >= taille_des_positions_en_dollars:  # le meilleur palier pour l'instant c'est 2
+                taille_des_positions_en_dollars = round(10 * portfolio / 4, 2)
+            elif portfolio * 10 <= taille_des_positions_en_dollars:
+                taille_des_positions_en_dollars = round(10 * portfolio / 4, 2)
         table_coupee = table.head(indice)
         if not en_position:
             signal, sens, take_profit, stop_loss = strategie_a_appliquer.signal(table_coupee)
@@ -69,7 +77,7 @@ def etudiant(symbole_a_tester, affiche=True):
                 trades.append(1)
     print(f"{indecis} trades indécis où le tp et le sl ont été touché sur la même bougie.")
     gain_total = round(portfolio - portfolio_de_depart, 2)
-    return gain_total, trades
+    return gain_total, trades, evolution_portfolio
 
 
 def statistiques(table_des_trades, rien_afficher_du_tout=False):
@@ -92,14 +100,14 @@ def statistiques(table_des_trades, rien_afficher_du_tout=False):
 
 
 def resultats(symbole_a_tester, affiche=False, rien_afficher_du_tout=False):
-    gain, table_des_trades = etudiant(symbole_a_tester, affiche)
+    gain, table_des_trades, evolution_portfolio = etudiant(symbole_a_tester, affiche)
     if not rien_afficher_du_tout:
         print(f"Les revenus en appliquant la {strategie_a_appliquer.nom}\n"
               f"avec un capital de {portfolio_de_depart}$\n"
               f"du {date_de_debut} à aujourd’hui\n"
               f"auraient été de {gain}$")
     winrate, defaites_de_suite = statistiques(table_des_trades, rien_afficher_du_tout)
-    return gain, winrate
+    return gain, winrate, evolution_portfolio
 
 
 def doctorat():
@@ -125,3 +133,18 @@ def analyse_des_resultats():
                 break
             classement.append((symbole_actuel, dictionnaire_des_resultats[symbole_actuel][0]))
     return classement
+
+
+def observer_evolution_portfolio(evolution_portfolio):
+    print(min(evolution_portfolio))
+    y = np.array(evolution_portfolio)
+    x = np.array([i for i in range(len(evolution_portfolio))])
+    plt.title("Evolution_portfolio")
+    plt.xlabel("Temps")
+    plt.ylabel("Dollars")
+    plt.plot(x, y, color="blue")
+    plt.show()
+
+
+resultats("AAVE")
+

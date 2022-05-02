@@ -4,7 +4,7 @@ import mplfinance as mpf
 import pandas as pd
 from binance.client import Client
 
-from automate import parametres
+from demarrage import parametres
 
 # url = f"https://data.binance.vision/data/spot/daily/klines/{symbole}/{timeframe}/{symbole}-{timeframe}-{date_fin}.zip"
 
@@ -43,9 +43,19 @@ def extraction(date_debut):
     return table
 
 
-def extraction_de_test(symbole_a_tester, date_debut):
-    symbole_a_tester += 'USDT'
-    donnee_brut = client.get_historical_klines(symbole_a_tester, timeframe, date_debut)
+def extraction_precise(symbole_demande, date_debut):
+    symbole_demande += 'USDT'
+    donnee_brut = client.get_historical_klines(symbole_demande, timeframe, date_debut)
     table = pd.DataFrame(donnee_brut)
     mise_en_page(table)
     return table
+
+
+def extraction_arbitrage(symbole_demande, time_frame_demande):
+    donnee_brut = client.get_klines(symbol=symbole_demande, interval=time_frame_demande)
+    table = pd.DataFrame(donnee_brut)
+    mise_en_page(table)
+    return table
+
+
+

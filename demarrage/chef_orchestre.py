@@ -1,5 +1,6 @@
 import platform
 import sys
+import time
 
 if platform.system() != 'Windows':
     sys.path.append('/home/diavolo/Téléchargements/trading_bot-main')
@@ -31,12 +32,18 @@ def automate(position=True):
         ouvrir_position(sens, take_profit, stop_loss, quantite)
 
 
-try:
-    automate()
-except Exception as exception:
-    ecrit_rapport("Erreur rencontrée. Fin du programme.")
-    ecrit_rapport(f"Détails de l'erreur: {exception}")
-    archivage_des_logs()
-    envoyer_mail("L'automate s'est arrete", "L'automate a rencontre une erreur. "
-                                            "Le programme a pris fin. "
-                                            "Les details de l'erreur sont consultables dans les logs.")
+def demarrer():
+    while True:
+        try:
+            automate()
+        except Exception as exception:
+            ecrit_rapport("Erreur rencontrée. Fin du programme.")
+            ecrit_rapport(f"Détails de l'erreur: {exception}")
+            archivage_des_logs()
+            envoyer_mail("L'automate s'est arrete", "L'automate a rencontre une erreur. "
+                                                    "Le programme a pris fin. "
+                                                    "Les details de l'erreur sont consultables dans les logs.")
+        time.sleep(15*60)
+
+
+demarrer()

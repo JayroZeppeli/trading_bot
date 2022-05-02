@@ -12,7 +12,7 @@ def calcul_macd(table, longueur_rapide, longueur_lente, longueur_signal):
 
 
 def observer_macd(debut):
-    from automate.parametres import nb_de_bougie_par_jour
+    from demarrage.parametres import nb_de_bougie_par_jour
     from donnees.extracteur_de_donnees import extraction
     table_indicateurs = ["MACD", "Signal"]
     table = extraction(debut)

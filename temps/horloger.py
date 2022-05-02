@@ -1,7 +1,7 @@
 import time
 from datetime import datetime
 
-from automate import parametres
+from demarrage import parametres
 from logs.scribe import ecrit_rapport
 
 

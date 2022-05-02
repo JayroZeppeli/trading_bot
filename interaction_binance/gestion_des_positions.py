@@ -1,6 +1,6 @@
 from binance.enums import *
 
-from automate.parametres import precision_apres_virgule_du_coin, distance_entre_stop_et_limit_pour_stop_loss
+from demarrage.parametres import precision_apres_virgule_du_coin, distance_entre_stop_et_limit_pour_stop_loss
 from logs.scribe import ecrit_rapport
 
 
