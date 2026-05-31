@@ -8,8 +8,8 @@ from demarrage import parametres
 
 # url = f"https://data.binance.vision/data/spot/daily/klines/{symbole}/{timeframe}/{symbole}-{timeframe}-{date_fin}.zip"
 
-api_key = 'LC5RxUjNaW9yI66wCQ4uxP2zvAuS1rlhmBTIO5IUFXskF7QwlegWgLaaBwUviw4P'
-api_secret = 'q8wPz0g090alkOEPt11QTliaNc9gsQRTHEgYohbj8zKDczipgWmxYhcrKSY0weLG'
+api_key = '' # you have to put your own API keys
+api_secret = ''
 
 client = Client(api_key, api_secret)
 symbole = parametres.symbole_a_utiliser + 'USDT'
