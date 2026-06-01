@@ -5,8 +5,8 @@ import gspread
 from logs import interaction_mail
 
 booleen_os = platform.system() != 'Windows'
-emplacement_csv = ('../logs/rapport.csv', '/home/diavolo/Téléchargements/trading_bot-main/logs/rapport.csv')
-emplacement_txt = ('E:/Documents/Utilitaire/Trading/algorithme_ultime/demarrage/palier_actuel.txt', '/home/diavolo/Téléchargements/trading_bot-main/demarrage/palier_actuel.txt')
+emplacement_csv = ('../logs/rapport.csv', 'ABSOLUTE PATH') # put your paths here
+emplacement_txt = ('../palier_actuel.txt', 'ABSOLUTE PATH') # put your paths here
 emplacement_a_utiliser_csv = emplacement_csv[booleen_os]
 emplacement_a_utiliser_txt = emplacement_txt[booleen_os]
 
@@ -58,9 +58,9 @@ def etat(numero):
 def archivage_des_logs(vider_la_feuille=False):
     try:
         if platform.system() != 'Windows':
-            chemin = '/home/diavolo/Téléchargements/trading_bot-main/logs/service_account.json'
+            chemin = '../logs/service_account.json' # put your path here
         else:
-            chemin = 'E:/Documents/Utilitaire/Trading/algorithme_ultime/logs/service_account.json'
+            chemin = '../logs/service_account.json' # put your path here
         compte_service = gspread.service_account(filename=chemin)
         fichier = compte_service.open("logs_digitaux")
         feuille = fichier.worksheet("data")
