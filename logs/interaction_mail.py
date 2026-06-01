@@ -3,9 +3,11 @@ import ssl
 
 
 port = 465
-adresse_mail = "echoes.act.alert@gmail.com"
-destinataire = "alexis.zaimi@yahoo.com"
-password = "43_VAydowJ"
+adresse_mail = ""  # put the bot's email adress 
+password = ""  # password of its email adress
+
+destinataire = ""  # put your email adress
+
 
 
 def envoyer_mail(sujet, message):
